@@ -27,6 +27,28 @@ Este monitor foi desenvolvido especificamente para auxiliar analistas de equity 
 - 📂 Histórico de documentos facilita a organização de referências
 - 🔗 Links diretos permitem acesso rápido aos documentos originais
 
+### Exemplos de Uso para Analistas
+
+#### Análise Financeira
+- **Acompanhamento de Indicadores**: Use os RMAs para acompanhar a evolução de indicadores financeiros como EBITDA, receita líquida e fluxo de caixa
+- **Comparação Período a Período**: Compare os dados do RMA atual com os anteriores para identificar tendências
+- **Projeções de Recuperação**: Utilize os dados financeiros para ajustar suas projeções de recuperação da empresa
+
+#### Análise Jurídica
+- **Avaliação de Riscos**: Monitore decisões judiciais para avaliar riscos legais e seu impacto no processo de recuperação
+- **Timeline do Processo**: Mantenha um cronograma atualizado com base nas decisões judiciais publicadas
+- **Identificação de Eventos Críticos**: Identifique rapidamente eventos críticos como homologações de planos ou mudanças de administradores
+
+#### Relatórios e Apresentações
+- **Atualização de Relatórios**: Atualize seus relatórios de análise com as informações mais recentes dos documentos
+- **Apresentações para Clientes**: Prepare apresentações com dados atualizados sobre o processo de recuperação
+- **Notas de Investimento**: Elabore notas de investimento com base nas informações mais recentes
+
+#### Monitoramento de Oportunidades
+- **Identificação de Catalisadores**: Identifique potenciais catalisadores de preço com base em decisões judiciais
+- **Avaliação de Timing**: Avalie o timing de entrada e saída de posições com base no progresso do processo
+- **Comparação com Peers**: Compare o progresso da recuperação judicial com outras empresas em situação similar
+
 ## Funcionalidades
 
 - ✅ Monitoramento automático do site do Grupo Petrópolis
@@ -256,6 +278,33 @@ O script é organizado em funções modulares, cada uma com uma responsabilidade
 3. Formata os títulos de acordo com o tipo
 4. Envia email apenas para documentos novos
 5. Atualiza o histórico
+
+## Melhorias Futuras para Analistas
+
+### Extração de Dados
+- **OCR de PDFs**: Extração automática de dados financeiros dos RMAs
+- **Tabelas Estruturadas**: Conversão de tabelas dos documentos para formatos analisáveis (CSV, Excel)
+- **Indicadores-Chave**: Identificação e extração automática de indicadores financeiros importantes
+
+### Análise Avançada
+- **Comparação Automática**: Comparação automática de indicadores entre RMAs consecutivos
+- **Alertas Personalizados**: Configuração de alertas baseados em thresholds específicos
+- **Análise de Sentimento**: Análise de sentimento em decisões judiciais para identificar tendências
+
+### Integração com Ferramentas
+- **Exportação para Excel**: Exportação direta de dados para planilhas Excel
+- **Integração com Bloomberg/Refinitiv**: Envio de dados para plataformas de análise financeira
+- **APIs para Sistemas Internos**: APIs para integração com sistemas internos de análise
+
+### Visualização e Relatórios
+- **Dashboard Interativo**: Dashboard para visualização de dados extraídos dos documentos
+- **Relatórios Automáticos**: Geração automática de relatórios baseados nos documentos
+- **Timeline Visual**: Timeline visual do processo de recuperação judicial
+
+### Personalização
+- **Filtros por Tipo de Documento**: Configuração de notificações por tipo de documento
+- **Palavras-Chave**: Alertas baseados em palavras-chave específicas nos documentos
+- **Múltiplos Destinatários**: Envio de notificações para diferentes equipes com diferentes focos
 
 ## Solução de Problemas
 
