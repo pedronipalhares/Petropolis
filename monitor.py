@@ -45,31 +45,32 @@ def get_documents():
         for link in download_links:
             href = link['href']
             if 'Fazer download' in link.text or any(ext in href.lower() for ext in ['.pdf', '.doc', '.docx']):
-                # Try to find the title in multiple ways
+                # Extract title from URL first
                 title = None
+                url_parts = href.split('/')
+                filename = url_parts[-1]
                 
-                # 1. Look for a heading (h1-h6) that contains the date and document type
-                for heading in soup.find_all(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']):
-                    heading_text = heading.text.strip()
-                    if any(ext in href.lower() for ext in ['.pdf', '.doc', '.docx']) and heading_text:
-                        title = heading_text
-                        break
+                # Try to extract date and document type from filename
+                if 'RMA' in filename:
+                    # Extract date from URL path
+                    date_parts = url_parts[-2].split('-')
+                    if len(date_parts) >= 2:
+                        month = date_parts[0]
+                        year = date_parts[1]
+                        title = f"{month}/{year} - {filename.replace('.pdf', '')}"
                 
-                # 2. If no heading found, look for a paragraph with date and document info
+                # If no title from URL, try to find it in the page content
                 if not title:
-                    for p in soup.find_all('p'):
-                        p_text = p.text.strip()
-                        if any(ext in href.lower() for ext in ['.pdf', '.doc', '.docx']) and p_text:
-                            title = p_text
+                    # Look for text containing the filename or similar patterns
+                    for element in soup.find_all(['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6']):
+                        text = element.text.strip()
+                        if filename.replace('.pdf', '') in text or 'RMA' in text:
+                            title = text
                             break
                 
-                # 3. If still no title, use the link text or previous element
+                # If still no title, use a default format
                 if not title:
-                    title = link.text.strip()
-                    if 'Fazer download' in title:
-                        prev_element = link.find_previous(['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'])
-                        if prev_element:
-                            title = prev_element.text.strip()
+                    title = filename.replace('.pdf', '').replace('-', ' ').title()
 
                 # Clean up the URL
                 if not href.startswith(('http://', 'https://')):
