@@ -77,15 +77,15 @@ def get_documents():
                         try:
                             day = parts[1].strip()
                             month = parts[2].strip()
-                            year = parts[3].strip().split()[0]
-                            rest = ' '.join(parts[3].strip().split()[1:])
-                            title = f"Decisão de {day}/{month}/{year}"
+                            year = parts[3].split('.')[0].strip()  # Remove .pdf and any extra spaces
+                            rest = ' '.join([p for p in parts[3:] if p and '.pdf' not in p])
+                            title = f"Decisão de {day.zfill(2)}/{month.zfill(2)}/{year}"
                             if rest:
-                                title += f" - {rest.replace('.pdf', '').title()}"
+                                title += f" - {rest.replace('-', ' ').title()}"
                         except:
-                            title = filename.replace('.pdf', '').replace('-', ' ').title()
+                            title = "Decisão " + filename.replace('.pdf', '').replace('Decisao-', '').replace('-', '/')
                     else:
-                        title = filename.replace('.pdf', '').replace('-', ' ').title()
+                        title = "Decisão " + filename.replace('.pdf', '').replace('Decisao-', '').replace('-', '/')
                 else:
                     # For other documents, use a default format
                     title = filename.replace('.pdf', '').replace('-', ' ').title()
