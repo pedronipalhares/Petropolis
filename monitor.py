@@ -45,13 +45,31 @@ def get_documents():
         for link in download_links:
             href = link['href']
             if 'Fazer download' in link.text or any(ext in href.lower() for ext in ['.pdf', '.doc', '.docx']):
-                # Get the document title from the previous element or link text
-                title = link.text.strip()
-                if 'Fazer download' in title:
-                    # Try to get a better title from nearby elements
-                    prev_element = link.find_previous(['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'])
-                    if prev_element:
-                        title = prev_element.text.strip()
+                # Try to find the title in multiple ways
+                title = None
+                
+                # 1. Look for a heading (h1-h6) that contains the date and document type
+                for heading in soup.find_all(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']):
+                    heading_text = heading.text.strip()
+                    if any(ext in href.lower() for ext in ['.pdf', '.doc', '.docx']) and heading_text:
+                        title = heading_text
+                        break
+                
+                # 2. If no heading found, look for a paragraph with date and document info
+                if not title:
+                    for p in soup.find_all('p'):
+                        p_text = p.text.strip()
+                        if any(ext in href.lower() for ext in ['.pdf', '.doc', '.docx']) and p_text:
+                            title = p_text
+                            break
+                
+                # 3. If still no title, use the link text or previous element
+                if not title:
+                    title = link.text.strip()
+                    if 'Fazer download' in title:
+                        prev_element = link.find_previous(['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'])
+                        if prev_element:
+                            title = prev_element.text.strip()
 
                 # Clean up the URL
                 if not href.startswith(('http://', 'https://')):
