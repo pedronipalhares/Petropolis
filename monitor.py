@@ -50,15 +50,26 @@ def get_documents():
                 url_parts = href.split('/')
                 filename = url_parts[-1]
                 
-                # Try to extract date and document type from filename
+                # Try to extract date and document type from filename and URL
                 if 'RMA' in filename:
-                    # Extract date from URL path
-                    date_parts = url_parts[-2].split('-')
-                    if len(date_parts) >= 2:
-                        month = date_parts[0]
-                        year = date_parts[1]
+                    try:
+                        # Get the date from the URL directory (e.g., 2024/05)
+                        year = url_parts[-2]  # The directory containing the file
+                        month = url_parts[-2]  # Same directory
+                        if '/' in month:
+                            month = month.split('/')[0]  # Get just the month part
+                        if '/' in year:
+                            year = year.split('/')[1]  # Get just the year part
+                            
+                        # Get the RMA number from the filename
                         rma_number = filename.split('o-RMA')[0]
+                        if not rma_number:
+                            rma_number = filename.split('.pdf')[0].replace('o-RMA', '')
+                            
                         title = f"{month}/{year} - {rma_number}º Relatório Mensal de Atividades (RMA)"
+                    except Exception as e:
+                        print(f"Error extracting RMA info: {e}")
+                        title = f"RMA {filename.replace('.pdf', '')}"
                 elif 'Decisao' in filename:
                     # For decision documents, use the filename
                     title = filename.replace('.pdf', '').replace('-', ' ').title()
