@@ -9,7 +9,7 @@ Este script monitora o site do escritório Zveiter para novos documentos relacio
 - 🔍 Detecção inteligente de novos documentos
 - 📝 Histórico de documentos para evitar duplicatas
 - 🎯 Links diretos para download dos PDFs
-- 🕒 Verificação automática a cada 5 minutos
+- 🕒 Verificação automática a cada hora
 - 📋 Formatação inteligente de títulos de documentos
 
 ## Tipos de Documentos
@@ -68,7 +68,7 @@ python monitor.py
 
 ### Execução Automática
 
-O script verifica automaticamente novos documentos a cada 5 minutos. Para iniciar o monitoramento contínuo:
+O script verifica automaticamente novos documentos a cada hora. Para iniciar o monitoramento contínuo:
 ```bash
 python monitor.py
 ```
@@ -84,9 +84,9 @@ Para executar automaticamente, você pode usar o cron (Linux/Mac) ou Agendador d
 crontab -e
 ```
 
-2. Adicione uma linha para executar o script (exemplo: a cada 5 minutos):
+2. Adicione uma linha para executar o script (exemplo: a cada hora):
 ```bash
-*/5 * * * * cd /caminho/para/petropolis && /caminho/para/petropolis/venv/bin/python monitor.py >> /caminho/para/petropolis/monitor.log 2>&1
+0 * * * * cd /caminho/para/petropolis && /caminho/para/petropolis/venv/bin/python monitor.py >> /caminho/para/petropolis/monitor.log 2>&1
 ```
 
 #### Usando o Agendador de Tarefas (Windows)
@@ -94,7 +94,7 @@ crontab -e
 1. Abra o Agendador de Tarefas
 2. Crie uma nova tarefa
 3. Configure para executar `python monitor.py` no diretório do projeto
-4. Defina a frequência para 5 minutos
+4. Defina a frequência para a cada hora
 
 ## Formato do Email
 
