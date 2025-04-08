@@ -2,6 +2,31 @@
 
 Este script monitora o site do escritório Zveiter para novos documentos relacionados ao processo de recuperação judicial do Grupo Petrópolis e envia notificações por email quando novos documentos são encontrados.
 
+## Para Analistas de Equity Research
+
+Este monitor foi desenvolvido especificamente para auxiliar analistas de equity research a acompanhar o processo de recuperação judicial do Grupo Petrópolis. Ele oferece várias vantagens:
+
+### Acompanhamento Automático
+- 🔄 Verificação automática a cada hora, eliminando a necessidade de checar o site manualmente
+- ⏰ Notificações imediatas quando novos documentos são publicados
+- 📊 Histórico completo de todos os documentos já encontrados
+
+### Documentos Relevantes para Análise
+- 📈 **Relatórios Mensais (RMA)**: Acompanhe a evolução financeira e operacional da empresa
+- ⚖️ **Decisões Judiciais**: Monitore desenvolvimentos importantes no processo judicial
+- 📑 **Outros Documentos**: Receba atualizações sobre comunicados e informações adicionais
+
+### Benefícios para Análise
+- 🎯 Economia de tempo ao automatizar a coleta de informações
+- 📱 Acesso rápido aos documentos através de links diretos nos emails
+- 📝 Títulos formatados para fácil identificação do conteúdo
+- 🔍 Evita perder documentos importantes para a análise
+
+### Integração com Fluxo de Trabalho
+- 📧 Notificações por email se integram ao fluxo de trabalho existente
+- 📂 Histórico de documentos facilita a organização de referências
+- 🔗 Links diretos permitem acesso rápido aos documentos originais
+
 ## Funcionalidades
 
 - ✅ Monitoramento automático do site do Grupo Petrópolis
