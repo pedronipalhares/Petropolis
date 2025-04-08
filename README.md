@@ -9,7 +9,20 @@ Este script monitora o site do escritório Zveiter para novos documentos relacio
 - 🔍 Detecção inteligente de novos documentos
 - 📝 Histórico de documentos para evitar duplicatas
 - 🎯 Links diretos para download dos PDFs
-- 🕒 Pode ser executado manualmente ou agendado
+- 🕒 Verificação automática a cada 5 minutos
+- 📋 Formatação inteligente de títulos de documentos
+
+## Tipos de Documentos
+
+O monitor identifica e formata automaticamente os seguintes tipos de documentos:
+
+### Relatórios Mensais (RMA)
+- Formato: "Xº Relatório Mensal de Atividades (RMA)"
+- Exemplo: "12º Relatório Mensal de Atividades (RMA)"
+
+### Decisões Judiciais
+- Formato: "Decisão de DD/MM/YYYY - Descrição"
+- Exemplo: "Decisão de 12/12/2023 - Homologação Proposta Alienação UPI"
 
 ## Configuração
 
@@ -53,28 +66,12 @@ Para verificar novos documentos manualmente:
 python monitor.py
 ```
 
-### Agendamento Automático
+### Execução Automática
 
-Para executar automaticamente, você pode usar o cron (Linux/Mac) ou Agendador de Tarefas (Windows).
-
-#### Usando Cron (Linux/Mac)
-
-1. Abra o editor cron:
+O script verifica automaticamente novos documentos a cada 5 minutos. Para iniciar o monitoramento contínuo:
 ```bash
-crontab -e
+python monitor.py
 ```
-
-2. Adicione uma linha para executar o script (exemplo: a cada hora):
-```bash
-0 * * * * cd /caminho/para/petropolis && /caminho/para/petropolis/venv/bin/python monitor.py >> /caminho/para/petropolis/monitor.log 2>&1
-```
-
-#### Usando o Agendador de Tarefas (Windows)
-
-1. Abra o Agendador de Tarefas
-2. Crie uma nova tarefa
-3. Configure para executar `python monitor.py` no diretório do projeto
-4. Defina a frequência desejada
 
 ## Formato do Email
 
@@ -83,6 +80,7 @@ O script envia emails com:
 - 🔗 Botões de acesso direto aos PDFs
 - 📅 Data e hora de descoberta de cada documento
 - 🎨 Design moderno e responsivo
+- 📝 Títulos formatados de acordo com o tipo de documento
 
 ## Estrutura do Projeto
 
@@ -114,7 +112,3 @@ Sinta-se à vontade para:
 - Reportar bugs
 - Sugerir melhorias
 - Enviar pull requests
-
-## Licença
-
-Este projeto é privado e destinado apenas para uso interno. 
