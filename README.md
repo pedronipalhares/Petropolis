@@ -139,6 +139,73 @@ petropolis/
 └── document_history.json  # Histórico de documentos (gerado automaticamente)
 ```
 
+## Arquitetura do Código
+
+### Estrutura do Script Principal (monitor.py)
+
+O script é organizado em funções modulares, cada uma com uma responsabilidade específica:
+
+1. **Configuração e Inicialização**
+   - `load_env()`: Carrega variáveis de ambiente do arquivo `.env`
+   - `load_history()`: Carrega o histórico de documentos do arquivo JSON
+   - `save_history()`: Salva o histórico atualizado no arquivo JSON
+
+2. **Monitoramento e Coleta**
+   - `get_documents()`: Função principal que:
+     - Acessa o site do escritório
+     - Extrai links de documentos
+     - Identifica o tipo de cada documento
+     - Formata os títulos de acordo com o tipo
+     - Retorna lista de documentos encontrados
+
+3. **Processamento de Documentos**
+   - `extract_rma_info()`: Extrai número do RMA do nome do arquivo
+   - `extract_decision_info()`: Extrai data e descrição de decisões
+   - `format_title()`: Formata o título de acordo com o tipo do documento
+
+4. **Notificação por Email**
+   - `send_email()`: Envia email com os novos documentos
+   - `create_email_content()`: Gera o conteúdo HTML do email
+   - `create_email_button()`: Cria botões de acesso aos PDFs
+
+### Design Decisions
+
+1. **Modularidade**
+   - Funções pequenas e focadas
+   - Fácil manutenção e teste
+   - Separação clara de responsabilidades
+
+2. **Tratamento de Erros**
+   - Try/except em operações críticas
+   - Logs detalhados para debugging
+   - Continuação do script mesmo com erros parciais
+
+3. **Formatação de Títulos**
+   - Lógica específica para cada tipo de documento
+   - Extração de informações do nome do arquivo
+   - Fallback para títulos padrão quando necessário
+
+4. **Histórico de Documentos**
+   - Armazenamento em JSON para persistência
+   - Evita notificações duplicadas
+   - Fácil backup e restauração
+
+5. **Email HTML**
+   - Design responsivo
+   - Botões de acesso direto
+   - Formatação clara e organizada
+
+### Fluxo de Execução
+
+1. O script inicia carregando configurações e histórico
+2. A cada hora:
+   - Verifica novos documentos no site
+   - Compara com o histórico
+   - Formata títulos dos novos documentos
+   - Envia email se houver novidades
+   - Atualiza o histórico
+3. Continua em loop até ser interrompido
+
 ## Detalhes Técnicos
 
 ### Histórico de Documentos
