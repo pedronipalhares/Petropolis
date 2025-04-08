@@ -53,20 +53,12 @@ def get_documents():
                 # Try to extract date and document type from filename and URL
                 if 'RMA' in filename:
                     try:
-                        # Get the date from the URL directory (e.g., 2024/05)
-                        year = url_parts[-2]  # The directory containing the file
-                        month = url_parts[-2]  # Same directory
-                        if '/' in month:
-                            month = month.split('/')[0]  # Get just the month part
-                        if '/' in year:
-                            year = year.split('/')[1]  # Get just the year part
-                            
                         # Get the RMA number from the filename
                         rma_number = filename.split('o-RMA')[0]
                         if not rma_number:
                             rma_number = filename.split('.pdf')[0].replace('o-RMA', '')
                             
-                        title = f"{month.zfill(2)}/{year} - {rma_number}º Relatório Mensal de Atividades (RMA)"
+                        title = f"{rma_number}º Relatório Mensal de Atividades (RMA)"
                     except Exception as e:
                         print(f"Error extracting RMA info: {e}")
                         title = f"RMA {filename.replace('.pdf', '')}"
