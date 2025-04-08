@@ -66,13 +66,26 @@ def get_documents():
                         if not rma_number:
                             rma_number = filename.split('.pdf')[0].replace('o-RMA', '')
                             
-                        title = f"{month}/{year} - {rma_number}º Relatório Mensal de Atividades (RMA)"
+                        title = f"{month.zfill(2)}/{year} - {rma_number}º Relatório Mensal de Atividades (RMA)"
                     except Exception as e:
                         print(f"Error extracting RMA info: {e}")
                         title = f"RMA {filename.replace('.pdf', '')}"
                 elif 'Decisao' in filename:
-                    # For decision documents, use the filename
-                    title = filename.replace('.pdf', '').replace('-', ' ').title()
+                    # For decision documents, format the date if present
+                    parts = filename.split('-')
+                    if len(parts) >= 3 and parts[0] == 'Decisao':
+                        try:
+                            day = parts[1].strip()
+                            month = parts[2].strip()
+                            year = parts[3].strip().split()[0]
+                            rest = ' '.join(parts[3].strip().split()[1:])
+                            title = f"Decisão de {day}/{month}/{year}"
+                            if rest:
+                                title += f" - {rest.replace('.pdf', '').title()}"
+                        except:
+                            title = filename.replace('.pdf', '').replace('-', ' ').title()
+                    else:
+                        title = filename.replace('.pdf', '').replace('-', ' ').title()
                 else:
                     # For other documents, use a default format
                     title = filename.replace('.pdf', '').replace('-', ' ').title()
