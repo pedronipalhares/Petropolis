@@ -57,19 +57,13 @@ def get_documents():
                     if len(date_parts) >= 2:
                         month = date_parts[0]
                         year = date_parts[1]
-                        title = f"{month}/{year} - {filename.replace('.pdf', '')}"
-                
-                # If no title from URL, try to find it in the page content
-                if not title:
-                    # Look for text containing the filename or similar patterns
-                    for element in soup.find_all(['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6']):
-                        text = element.text.strip()
-                        if filename.replace('.pdf', '') in text or 'RMA' in text:
-                            title = text
-                            break
-                
-                # If still no title, use a default format
-                if not title:
+                        rma_number = filename.split('o-RMA')[0]
+                        title = f"{month}/{year} - {rma_number}º Relatório Mensal de Atividades (RMA)"
+                elif 'Decisao' in filename:
+                    # For decision documents, use the filename
+                    title = filename.replace('.pdf', '').replace('-', ' ').title()
+                else:
+                    # For other documents, use a default format
                     title = filename.replace('.pdf', '').replace('-', ' ').title()
 
                 # Clean up the URL
