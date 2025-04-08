@@ -2,7 +2,25 @@
 
 Este script monitora o site do escritório Zveiter para novos documentos relacionados ao processo de recuperação judicial do Grupo Petrópolis e envia notificações por email quando novos documentos são encontrados.
 
-## Para Analistas de Equity Research
+---
+
+## 📊 Visão Geral
+
+O Monitor de Documentos é uma ferramenta automatizada que acompanha o processo de recuperação judicial do Grupo Petrópolis, notificando analistas sobre novos documentos publicados no site do escritório Zveiter.
+
+### Principais Funcionalidades
+
+- ✅ Monitoramento automático do site do Grupo Petrópolis
+- 📧 Notificações por email com design moderno e responsivo
+- 🔍 Detecção inteligente de novos documentos
+- 📝 Histórico de documentos para evitar duplicatas
+- 🎯 Links diretos para download dos PDFs
+- 🕒 Verificação automática a cada hora
+- 📋 Formatação inteligente de títulos de documentos
+
+---
+
+## 👥 Para Analistas de Equity Research
 
 Este monitor foi desenvolvido especificamente para auxiliar analistas de equity research a acompanhar o processo de recuperação judicial do Grupo Petrópolis. Ele oferece várias vantagens:
 
@@ -49,17 +67,9 @@ Este monitor foi desenvolvido especificamente para auxiliar analistas de equity 
 - **Avaliação de Timing**: Avalie o timing de entrada e saída de posições com base no progresso do processo
 - **Comparação com Peers**: Compare o progresso da recuperação judicial com outras empresas em situação similar
 
-## Funcionalidades
+---
 
-- ✅ Monitoramento automático do site do Grupo Petrópolis
-- 📧 Notificações por email com design moderno e responsivo
-- 🔍 Detecção inteligente de novos documentos
-- 📝 Histórico de documentos para evitar duplicatas
-- 🎯 Links diretos para download dos PDFs
-- 🕒 Verificação automática a cada hora
-- 📋 Formatação inteligente de títulos de documentos
-
-## Tipos de Documentos
+## 📄 Tipos de Documentos
 
 O monitor identifica e formata automaticamente os seguintes tipos de documentos:
 
@@ -81,79 +91,9 @@ O monitor identifica e formata automaticamente os seguintes tipos de documentos:
 - Exemplo: "Comunicado_Recuperacao_Judicial.pdf"
 - Identificação: Qualquer documento que não se encaixe nos padrões acima
 
-## Configuração
+---
 
-1. Clone o repositório:
-```bash
-git clone [url-do-repositorio]
-cd petropolis
-```
-
-2. Crie e ative um ambiente virtual:
-```bash
-python3 -m venv venv
-source venv/bin/activate  # No Windows: venv\Scripts\activate
-```
-
-3. Instale as dependências:
-```bash
-pip install -r requirements.txt
-```
-
-4. Configure as variáveis de ambiente:
-```bash
-cp .env.example .env
-```
-
-5. Edite o arquivo `.env` com suas configurações:
-```
-SMTP_SERVER=seu.servidor.smtp.com
-SMTP_PORT=465
-EMAIL_USER=seu.email@dominio.com
-EMAIL_PASSWORD=sua-senha
-NOTIFICATION_EMAIL=email.para.notificacoes@dominio.com
-```
-
-## Uso
-
-### Execução Manual
-
-Para verificar novos documentos manualmente:
-```bash
-python monitor.py
-```
-
-### Execução Automática
-
-O script verifica automaticamente novos documentos a cada hora. Para iniciar o monitoramento contínuo:
-```bash
-python monitor.py
-```
-
-### Agendamento Automático
-
-Para executar automaticamente, você pode usar o cron (Linux/Mac) ou Agendador de Tarefas (Windows).
-
-#### Usando Cron (Linux/Mac)
-
-1. Abra o editor cron:
-```bash
-crontab -e
-```
-
-2. Adicione uma linha para executar o script (exemplo: a cada hora):
-```bash
-0 * * * * cd /caminho/para/petropolis && /caminho/para/petropolis/venv/bin/python monitor.py >> /caminho/para/petropolis/monitor.log 2>&1
-```
-
-#### Usando o Agendador de Tarefas (Windows)
-
-1. Abra o Agendador de Tarefas
-2. Crie uma nova tarefa
-3. Configure para executar `python monitor.py` no diretório do projeto
-4. Defina a frequência para a cada hora
-
-## Formato do Email
+## 📧 Formato do Email
 
 O script envia emails com:
 - 📋 Lista organizada de novos documentos
@@ -175,7 +115,58 @@ Novos Documentos Encontrados (19)
    Link: https://exemplo.com/Decisao12122023.pdf
 ```
 
-## Estrutura do Projeto
+---
+
+## 🔮 Melhorias Futuras para Analistas
+
+### Extração de Dados
+- **OCR de PDFs**: Extração automática de dados financeiros dos RMAs
+- **Tabelas Estruturadas**: Conversão de tabelas dos documentos para formatos analisáveis (CSV, Excel)
+- **Indicadores-Chave**: Identificação e extração automática de indicadores financeiros importantes
+
+### Análise Avançada
+- **Comparação Automática**: Comparação automática de indicadores entre RMAs consecutivos
+- **Alertas Personalizados**: Configuração de alertas baseados em thresholds específicos
+- **Análise de Sentimento**: Análise de sentimento em decisões judiciais para identificar tendências
+
+### Integração com Ferramentas
+- **Exportação para Excel**: Exportação direta de dados para planilhas Excel
+- **Integração com Bloomberg/Refinitiv**: Envio de dados para plataformas de análise financeira
+- **APIs para Sistemas Internos**: APIs para integração com sistemas internos de análise
+
+### Visualização e Relatórios
+- **Dashboard Interativo**: Dashboard para visualização de dados extraídos dos documentos
+- **Relatórios Automáticos**: Geração automática de relatórios baseados nos documentos
+- **Timeline Visual**: Timeline visual do processo de recuperação judicial
+
+### Personalização
+- **Filtros por Tipo de Documento**: Configuração de notificações por tipo de documento
+- **Palavras-Chave**: Alertas baseados em palavras-chave específicas nos documentos
+- **Múltiplos Destinatários**: Envio de notificações para diferentes equipes com diferentes focos
+
+---
+
+## 🛠️ Solução de Problemas
+
+### Email não está chegando
+- Verifique as configurações SMTP no arquivo `.env`
+- Confirme se a porta está correta (geralmente 465 para SSL)
+- Verifique se a senha do email está correta
+- Para Gmail, use uma "Senha de App" em vez da senha normal
+
+### Links não funcionam
+- Verifique sua conexão com a internet
+- Certifique-se de que os PDFs ainda estão disponíveis no servidor
+- Tente acessar os links diretamente no navegador
+
+### Problemas com Títulos
+- Verifique se o nome do arquivo segue o padrão esperado
+- Para RMAs: deve conter "RMA" seguido do número
+- Para Decisões: deve conter "Decisao" seguido da data
+
+---
+
+## 📋 Estrutura do Projeto
 
 ```
 petropolis/
@@ -186,7 +177,9 @@ petropolis/
 └── document_history.json  # Histórico de documentos (gerado automaticamente)
 ```
 
-## Arquitetura do Código
+---
+
+## 🏗️ Arquitetura do Código
 
 ### Estrutura do Script Principal (monitor.py)
 
@@ -253,9 +246,9 @@ O script é organizado em funções modulares, cada uma com uma responsabilidade
    - Atualiza o histórico
 3. Continua em loop até ser interrompido
 
-## Detalhes Técnicos
+### Detalhes Técnicos
 
-### Histórico de Documentos
+#### Histórico de Documentos
 - Armazenado em `document_history.json`
 - Evita notificações duplicadas
 - Mantém registro de todos os documentos já encontrados
@@ -272,59 +265,92 @@ O script é organizado em funções modulares, cada uma com uma responsabilidade
 }
 ```
 
-### Processo de Monitoramento
+#### Processo de Monitoramento
 1. Verifica o site a cada hora
 2. Compara novos documentos com o histórico
 3. Formata os títulos de acordo com o tipo
 4. Envia email apenas para documentos novos
 5. Atualiza o histórico
 
-## Melhorias Futuras para Analistas
+---
 
-### Extração de Dados
-- **OCR de PDFs**: Extração automática de dados financeiros dos RMAs
-- **Tabelas Estruturadas**: Conversão de tabelas dos documentos para formatos analisáveis (CSV, Excel)
-- **Indicadores-Chave**: Identificação e extração automática de indicadores financeiros importantes
+## 📚 Guia de Instalação e Uso
 
-### Análise Avançada
-- **Comparação Automática**: Comparação automática de indicadores entre RMAs consecutivos
-- **Alertas Personalizados**: Configuração de alertas baseados em thresholds específicos
-- **Análise de Sentimento**: Análise de sentimento em decisões judiciais para identificar tendências
+### Configuração
 
-### Integração com Ferramentas
-- **Exportação para Excel**: Exportação direta de dados para planilhas Excel
-- **Integração com Bloomberg/Refinitiv**: Envio de dados para plataformas de análise financeira
-- **APIs para Sistemas Internos**: APIs para integração com sistemas internos de análise
+1. Clone o repositório:
+```bash
+git clone [url-do-repositorio]
+cd petropolis
+```
 
-### Visualização e Relatórios
-- **Dashboard Interativo**: Dashboard para visualização de dados extraídos dos documentos
-- **Relatórios Automáticos**: Geração automática de relatórios baseados nos documentos
-- **Timeline Visual**: Timeline visual do processo de recuperação judicial
+2. Crie e ative um ambiente virtual:
+```bash
+python3 -m venv venv
+source venv/bin/activate  # No Windows: venv\Scripts\activate
+```
 
-### Personalização
-- **Filtros por Tipo de Documento**: Configuração de notificações por tipo de documento
-- **Palavras-Chave**: Alertas baseados em palavras-chave específicas nos documentos
-- **Múltiplos Destinatários**: Envio de notificações para diferentes equipes com diferentes focos
+3. Instale as dependências:
+```bash
+pip install -r requirements.txt
+```
 
-## Solução de Problemas
+4. Configure as variáveis de ambiente:
+```bash
+cp .env.example .env
+```
 
-### Email não está chegando
-- Verifique as configurações SMTP no arquivo `.env`
-- Confirme se a porta está correta (geralmente 465 para SSL)
-- Verifique se a senha do email está correta
-- Para Gmail, use uma "Senha de App" em vez da senha normal
+5. Edite o arquivo `.env` com suas configurações:
+```
+SMTP_SERVER=seu.servidor.smtp.com
+SMTP_PORT=465
+EMAIL_USER=seu.email@dominio.com
+EMAIL_PASSWORD=sua-senha
+NOTIFICATION_EMAIL=email.para.notificacoes@dominio.com
+```
 
-### Links não funcionam
-- Verifique sua conexão com a internet
-- Certifique-se de que os PDFs ainda estão disponíveis no servidor
-- Tente acessar os links diretamente no navegador
+### Execução
 
-### Problemas com Títulos
-- Verifique se o nome do arquivo segue o padrão esperado
-- Para RMAs: deve conter "RMA" seguido do número
-- Para Decisões: deve conter "Decisao" seguido da data
+#### Execução Manual
 
-## Contribuindo
+Para verificar novos documentos manualmente:
+```bash
+python monitor.py
+```
+
+#### Execução Automática
+
+O script verifica automaticamente novos documentos a cada hora. Para iniciar o monitoramento contínuo:
+```bash
+python monitor.py
+```
+
+#### Agendamento Automático
+
+Para executar automaticamente, você pode usar o cron (Linux/Mac) ou Agendador de Tarefas (Windows).
+
+##### Usando Cron (Linux/Mac)
+
+1. Abra o editor cron:
+```bash
+crontab -e
+```
+
+2. Adicione uma linha para executar o script (exemplo: a cada hora):
+```bash
+0 * * * * cd /caminho/para/petropolis && /caminho/para/petropolis/venv/bin/python monitor.py >> /caminho/para/petropolis/monitor.log 2>&1
+```
+
+##### Usando o Agendador de Tarefas (Windows)
+
+1. Abra o Agendador de Tarefas
+2. Crie uma nova tarefa
+3. Configure para executar `python monitor.py` no diretório do projeto
+4. Defina a frequência para a cada hora
+
+---
+
+## 🤝 Contribuindo
 
 Sinta-se à vontade para:
 - Reportar bugs
