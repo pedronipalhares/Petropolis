@@ -84,9 +84,9 @@ Para executar automaticamente, você pode usar o cron (Linux/Mac) ou Agendador d
 crontab -e
 ```
 
-2. Adicione uma linha para executar o script (exemplo: a cada hora):
+2. Adicione uma linha para executar o script (exemplo: a cada 5 minutos):
 ```bash
-0 * * * * cd /caminho/para/petropolis && /caminho/para/petropolis/venv/bin/python monitor.py >> /caminho/para/petropolis/monitor.log 2>&1
+*/5 * * * * cd /caminho/para/petropolis && /caminho/para/petropolis/venv/bin/python monitor.py >> /caminho/para/petropolis/monitor.log 2>&1
 ```
 
 #### Usando o Agendador de Tarefas (Windows)
@@ -94,7 +94,7 @@ crontab -e
 1. Abra o Agendador de Tarefas
 2. Crie uma nova tarefa
 3. Configure para executar `python monitor.py` no diretório do projeto
-4. Defina a frequência desejada
+4. Defina a frequência para 5 minutos
 
 ## Formato do Email
 
