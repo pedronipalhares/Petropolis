@@ -73,6 +73,29 @@ O script verifica automaticamente novos documentos a cada 5 minutos. Para inicia
 python monitor.py
 ```
 
+### Agendamento Automático
+
+Para executar automaticamente, você pode usar o cron (Linux/Mac) ou Agendador de Tarefas (Windows).
+
+#### Usando Cron (Linux/Mac)
+
+1. Abra o editor cron:
+```bash
+crontab -e
+```
+
+2. Adicione uma linha para executar o script (exemplo: a cada hora):
+```bash
+0 * * * * cd /caminho/para/petropolis && /caminho/para/petropolis/venv/bin/python monitor.py >> /caminho/para/petropolis/monitor.log 2>&1
+```
+
+#### Usando o Agendador de Tarefas (Windows)
+
+1. Abra o Agendador de Tarefas
+2. Crie uma nova tarefa
+3. Configure para executar `python monitor.py` no diretório do projeto
+4. Defina a frequência desejada
+
 ## Formato do Email
 
 O script envia emails com:
