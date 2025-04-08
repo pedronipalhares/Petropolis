@@ -19,10 +19,20 @@ O monitor identifica e formata automaticamente os seguintes tipos de documentos:
 ### Relatórios Mensais (RMA)
 - Formato: "Xº Relatório Mensal de Atividades (RMA)"
 - Exemplo: "12º Relatório Mensal de Atividades (RMA)"
+- Identificação: Detectado através do padrão "RMA" no nome do arquivo
+- Número do RMA: Extraído do nome do arquivo (ex: "RMA12.pdf" → "12º RMA")
 
 ### Decisões Judiciais
 - Formato: "Decisão de DD/MM/YYYY - Descrição"
 - Exemplo: "Decisão de 12/12/2023 - Homologação Proposta Alienação UPI"
+- Identificação: Detectado através do padrão "Decisao" no nome do arquivo
+- Data: Extraída do nome do arquivo (ex: "Decisao12122023.pdf" → "12/12/2023")
+- Descrição: Extraída do conteúdo do documento ou nome do arquivo
+
+### Outros Documentos
+- Formato: Nome do arquivo original
+- Exemplo: "Comunicado_Recuperacao_Judicial.pdf"
+- Identificação: Qualquer documento que não se encaixe nos padrões acima
 
 ## Configuração
 
@@ -105,6 +115,19 @@ O script envia emails com:
 - 🎨 Design moderno e responsivo
 - 📝 Títulos formatados de acordo com o tipo de documento
 
+### Exemplo de Email
+```
+Novos Documentos Encontrados (19)
+
+📄 12º Relatório Mensal de Atividades (RMA)
+   Data: 2024-02-14 15:30:45
+   Link: https://exemplo.com/RMA12.pdf
+
+📄 Decisão de 12/12/2023 - Homologação Proposta Alienação UPI
+   Data: 2024-02-14 15:30:45
+   Link: https://exemplo.com/Decisao12122023.pdf
+```
+
 ## Estrutura do Projeto
 
 ```
@@ -115,6 +138,32 @@ petropolis/
 ├── .env               # Configurações reais (não versionado)
 └── document_history.json  # Histórico de documentos (gerado automaticamente)
 ```
+
+## Detalhes Técnicos
+
+### Histórico de Documentos
+- Armazenado em `document_history.json`
+- Evita notificações duplicadas
+- Mantém registro de todos os documentos já encontrados
+- Formato:
+```json
+{
+    "documentos": [
+        {
+            "titulo": "12º Relatório Mensal de Atividades (RMA)",
+            "url": "https://exemplo.com/RMA12.pdf",
+            "data_descoberta": "2024-02-14 15:30:45"
+        }
+    ]
+}
+```
+
+### Processo de Monitoramento
+1. Verifica o site a cada hora
+2. Compara novos documentos com o histórico
+3. Formata os títulos de acordo com o tipo
+4. Envia email apenas para documentos novos
+5. Atualiza o histórico
 
 ## Solução de Problemas
 
@@ -128,6 +177,11 @@ petropolis/
 - Verifique sua conexão com a internet
 - Certifique-se de que os PDFs ainda estão disponíveis no servidor
 - Tente acessar os links diretamente no navegador
+
+### Problemas com Títulos
+- Verifique se o nome do arquivo segue o padrão esperado
+- Para RMAs: deve conter "RMA" seguido do número
+- Para Decisões: deve conter "Decisao" seguido da data
 
 ## Contribuindo
 
