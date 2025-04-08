@@ -62,11 +62,6 @@ Este monitor foi desenvolvido especificamente para auxiliar analistas de equity 
 - **Apresentações para Clientes**: Prepare apresentações com dados atualizados sobre o processo de recuperação
 - **Notas de Investimento**: Elabore notas de investimento com base nas informações mais recentes
 
-#### Monitoramento de Oportunidades
-- **Identificação de Catalisadores**: Identifique potenciais catalisadores de preço com base em decisões judiciais
-- **Avaliação de Timing**: Avalie o timing de entrada e saída de posições com base no progresso do processo
-- **Comparação com Peers**: Compare o progresso da recuperação judicial com outras empresas em situação similar
-
 ---
 
 ## 📄 Tipos de Documentos
